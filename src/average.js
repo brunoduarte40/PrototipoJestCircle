@@ -13,15 +13,19 @@
 */
 
 const average = (array) => {
-  let sum = 0; 
+  let sum = 0;
+  let verifyUndefined = '';
   array.forEach((numbers) => {
-    if ((typeof numbers !== 'number') || (array[0] === '')) sum = undefined; sum += numbers;
+    sum += numbers;
+    if ((typeof numbers !== 'number') || (array[0] === '')) {
+      verifyUndefined = undefined; 
+    }
   });
-  if (sum !== undefined) {
-    if (!Number.isNaN(Math.round(sum / array.length))) return Math.round(sum / array.length);
-    return undefined;
+  let verifyNumber = Math.round(sum / array.length);
+  if ((verifyUndefined !== undefined) && (!Number.isNaN(verifyNumber))) {
+    return verifyNumber;
   }
-  return sum;
+  return undefined;
 };
 
 module.exports = average;
