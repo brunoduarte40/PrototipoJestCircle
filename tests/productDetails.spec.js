@@ -33,16 +33,36 @@ describe('6 - Implemente os casos de teste para a função `productDetails`', ()
     
     // ESCREVA SEUS TESTES ABAIXO:
     // Teste que o retorno da função é um array.
+    let verify = '';
     const verifyIsArray = productDetails('string1', 'string2');
-    assert.strictEqual(Array.isArray(verifyIsArray), 'array');
+    if (Array.isArray(verifyIsArray) === true) {
+      verify = 'array';
+    }
+    assert.strictEqual(verify, 'array');
     // Teste que o array retornado pela função contém dois itens dentro.
     assert.strictEqual(productDetails('string1', 'string2').length, 2);
     // Teste que os dois itens dentro do array retornado pela função são objetos.
-    const verifyObject = productDetails('string1', 'string2');
-    
-    assert.strictEqual();
-    assert.strictEqual();
+    assert.strictEqual(typeof productDetails('string1', 'string2')[0], 'object');
+    assert.strictEqual(typeof productDetails('string1', 'string2')[1], 'object');
     // Teste que os dois objetos são diferentes entre si.
+    assert.notStrictEqual(productDetails('string1', 'string2')[0], productDetails('string1', 'string2')[1]);
     // Teste que os dois productIds terminam com 123.
+    const terminationCheck1 = productDetails('string1', 'string2')[0].details.productId;
+    let termination1 = '';
+    for (let i = 0; i < terminationCheck1.length; i += 1) {
+      if (i > (terminationCheck1.length - 4)) {
+        termination1 += terminationCheck1[i];
+      }
+    }
+    assert.strictEqual(termination1, '123');
+
+    const terminationCheck2 = productDetails('string1', 'string2')[1].details.productId;
+    let termination2 = '';
+    for (let i = 0; i < terminationCheck2.length; i += 1) {
+      if (i > (terminationCheck2.length - 4)) {
+        termination2 += terminationCheck2[i];
+      }
+    }
+    assert.strictEqual(termination2, '123');
   });
 });
